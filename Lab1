@@ -1,0 +1,42 @@
+unsigned long LedTimer13; //  Initialize variable LedTimer13 as unsigned long, can store more bits.
+unsigned long LedTimer12; //  Initialize variable LedTimer12 as unsigned long, can store more bits.
+
+//  void setup() is where we determines what pins will be inputs and outputs.
+void setup()
+{
+  pinMode( 13, OUTPUT ); //  sets pin 13 as output.
+  pinMode(12, OUTPUT); // set pin 12 as output.
+  LedTimer13 = millis(); //  asigns number of milliseconds that has passed since starting the program.
+  LedTimer12 = LedTimer13; // LedTimer12 is on same 'clock' as LedTimer13.
+} //  end of setup() method.
+
+//  void loop() will run continously over and over again.
+void loop()
+{
+  if ( millis() - LedTimer13 >= 1000 ) //  checks if number of ms thats passed is greater than what was 
+  {                                    //  originally asigned to LedTimer13 at the beginning of program.
+    if ( digitalRead(13) == HIGH ) //  if statement reads current pin state, then checks if it is "high". If true, exe next line.
+    {
+      digitalWrite( 13, LOW ); //  overwrites the current pin state of '13' with "low".
+    }
+    else { //  exe if the digital read of pin 13 was NOT high.
+      digitalWrite( 13, HIGH ); // if the pinstate of 13 was low, then it will write "high" to it.
+    } //  end of second if statement.
+
+    LedTimer13 += 1000; // adds 1000 ms to LedTimer13, equal to i = i + 1.
+  } // end of first if else statement for LedTimer13 
+  
+  if (millis() - LedTimer12 >= 3000) // runs algorithms every 3000ms or 3 seconds.
+  {
+    if (digitalRead(12) == HIGH) // checks if pin 12 is 'on'.
+    {
+      digitalWrite(12, LOW); // if 'on', turn pin 'off'.
+    }
+    else { 
+      digitalWrite(12, HIGH); // if 'off', turn pin 'on'.
+    }
+
+    LedTimer12 +=3000;
+  } // end of second if statement.
+  
+} //  end of loop. Will run immediately.
