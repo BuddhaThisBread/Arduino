@@ -1,4 +1,4 @@
-char Alpha = 'A';
+/*char Alpha = 'A';
 char Number = '0';
 
 unsigned long Timer;
@@ -22,11 +22,28 @@ void loop() {
       
     Timer += 500;
   }
-    
+ 
   if (Serial.available() > 0) {
     if (Serial.read() == 'R') {
       Alpha = 'A';
       Number = '0';
     }
+  }
+}*/
+
+char Alpha = 'A';
+char Number = '0';
+
+unsigned long Timer;
+
+void setup() {
+  Serial.begin(9600);
+  Timer = millis();
+}
+
+void loop() {
+  if (millis() - Timer >= 500) {
+    Serial.print(Alpha);
+    Timer += 500;
   }
 }
