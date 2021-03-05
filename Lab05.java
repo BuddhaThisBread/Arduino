@@ -16,6 +16,7 @@ void loop() {
   if (millis() - sTimer >= 1000) {
     count++;
     // print count which incremints every second
+    LcdDriver.setCursor(0,0);
     LcdDriver.print(count);
     sTimer += 1000;
   }
@@ -43,6 +44,7 @@ void loop() {
   if (millis() - sTimer >= 1000) {
     count++;
     // print count which incremints every second
+    LcdDriver.setCursor(0,0);
     LcdDriver.print(count);
     sTimer += 1000;
   }
@@ -50,10 +52,9 @@ void loop() {
     if (digitalRead(4) == HIGH) {
       count2 = 0;
     } else if (digitalRead(4) == LOW) {
-      LcdDriver.clear();
+      LcdDriver.setCursor(0,1);
       count2++;
       LcdDriver.print(count2);
     }
     stopWatch += 100;
   }
-}
